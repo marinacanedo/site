@@ -11,6 +11,7 @@
     --secondary: 195 20% 92%; --secondary-foreground: 195 70% 17%;
     --muted: 195 15% 93%; --muted-foreground: 195 10% 45%;
     --accent: 28 50% 64%; --accent-foreground: 0 0% 100%;
+    --accent-dark: 28 58% 34%;
     --burgundy: 310 30% 20%; --burgundy-foreground: 0 0% 100%;
     --border: 195 20% 88%; --input: 195 20% 88%; --ring: 28 50% 64%;
     --radius: 1rem;
@@ -30,6 +31,7 @@
 }
 @layer utilities {
   .text-gradient-gold { background: var(--gradient-gold); background-size: 200% 200%; -webkit-background-clip: text; background-clip: text; color: transparent; animation: gradient-shift 6s ease-in-out infinite; }
+  .text-gradient-gold-dark { background: linear-gradient(135deg, hsl(28 58% 34%) 0%, hsl(32 62% 44%) 50%, hsl(28 58% 34%) 100%); background-size: 200% 200%; -webkit-background-clip: text; background-clip: text; color: transparent; animation: gradient-shift 6s ease-in-out infinite; }
   .glass { background: var(--glass-bg); backdrop-filter: blur(14px); -webkit-backdrop-filter: blur(14px); border: 1px solid var(--glass-border); }
   .glow-gold { box-shadow: var(--glow-gold); }
   .conic-border { background: conic-gradient(from 0deg, hsl(28 50% 64%), hsl(38 80% 75%), hsl(28 50% 64%), hsl(195 70% 30%), hsl(28 50% 64%)); animation: spin-slow 8s linear infinite; animation-play-state: paused; }
@@ -42,5 +44,5 @@
 @keyframes spin-slow { to { transform: rotate(360deg); } }
 @media (prefers-reduced-motion: reduce) {
   *, *::before, *::after { animation-duration: 0.001ms !important; animation-iteration-count: 1 !important; animation-delay: 0ms !important; transition-duration: 0.001ms !important; scroll-behavior: auto !important; }
-  .animate-ken-burns, .animate-float, .animate-shimmer, .animate-scroll-indicator, .conic-border, .text-gradient-gold { animation: none !important; }
+  .text-gradient-gold-dark, .animate-ken-burns, .animate-float, .animate-shimmer, .animate-scroll-indicator, .conic-border, .text-gradient-gold { animation: none !important; }
 }

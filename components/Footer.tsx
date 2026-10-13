@@ -51,8 +51,8 @@ export default function Footer() {
           <div className="pt-8 border-t border-border flex flex-col items-center gap-4">
             <img src="/img/logo-full.webp" alt="Marina Contábil" className="h-16 w-auto" loading="lazy" width={220} height={64} />
             <p className="text-muted-foreground text-sm">Marina Contábil – 45 anos de confiança e compromisso com você.</p>
-            <p className="text-muted-foreground/60 text-xs">© {new Date().getFullYear()} Marina Contábil. Todos os direitos reservados.</p>
-            <a href="https://grupofreela.com" target="_blank" rel="noopener noreferrer" className="text-muted-foreground/60 text-xs hover:text-muted-foreground transition-colors">by grupofreela.com</a>
+            <p className="text-muted-foreground text-xs">© {new Date().getFullYear()} Marina Contábil. Todos os direitos reservados.</p>
+            <a href="https://grupofreela.com" target="_blank" rel="noopener noreferrer" className="text-muted-foreground text-xs underline-offset-2 hover:underline transition-colors">by grupofreela.com</a>
           </div>
         </div>
       </div>

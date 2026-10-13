@@ -37,7 +37,7 @@ export default function BpoSection() {
   };
 
   return (
-    <section id="bpo" className="relative py-24 md:py-32 overflow-hidden bg-burgundy">
+    <section id="bpo" className="scroll-mt-16 md:scroll-mt-20 relative py-24 md:py-32 overflow-hidden bg-burgundy">
       <div className="absolute inset-0 bg-grid opacity-30" />
       <div className="absolute top-1/4 right-1/4 w-[32rem] h-[32rem] rounded-full bg-accent/10 blur-3xl animate-float" />
       <div ref={ref} className={`container relative px-6 md:px-12 transition-all duration-1000 ${isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-10"}`}>

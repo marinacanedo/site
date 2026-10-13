@@ -1,23 +1,28 @@
 # Marina Contábil
 
-> Escritório de contabilidade em Belo Horizonte (MG) com 45 anos de experiência. Contabilidade geral, obrigações fiscais, departamento pessoal, planejamento tributário, contabilidade internacional e BPO financeiro.
+> Escritório de contabilidade em Belo Horizonte (MG) com 45 anos de experiência (fundado em 1981). Atende empresas de todos os portes, de MEI a Lucro Real, com contabilidade geral, obrigações fiscais, departamento pessoal, planejamento tributário, contabilidade internacional e BPO financeiro.
 
+## Contato
 - Site: https://marinacontabil.com/
 - Endereço: Av. do Contorno, 2905, 4º andar, Santa Efigênia, Belo Horizonte - MG, 30110-915
 - Telefone: +55 (31) 3225-2622
 - E-mail: marina@marinacontabil.com
 - Horário: segunda a sexta, 9h às 18h
-- Área do Cliente: https://vip.acessorias.com/marinacontabil
+- Área do Cliente (clientes existentes): https://vip.acessorias.com/marinacontabil
 
 ## Serviços
-- Contabilidade Geral
-- Abertura e Regularização de empresas
-- Obrigações Fiscais
-- Departamento Pessoal
-- MEI e Simples Nacional
-- Consultoria Tributária
-- Contabilidade Internacional (IFRS, US GAAP, transfer pricing)
-- BPO Financeiro: contas a pagar e receber, fluxo de caixa, relatórios gerenciais, conciliação bancária
+- Contabilidade Geral: organização e escrituração contábil mensal para empresas de todos os portes.
+- Abertura e Regularização: constituição e regularização de empresas.
+- Obrigações Fiscais: declarações e cumprimento das obrigações junto aos órgãos competentes.
+- Departamento Pessoal: folha de pagamento, admissões, rescisões e rotinas trabalhistas.
+- MEI e Simples Nacional: suporte a microempreendedores e pequenas empresas.
+- Consultoria Tributária: planejamento tributário estratégico para reduzir custos de forma legal.
+- Contabilidade Internacional: atendimento bilíngue, IFRS, US GAAP, transfer pricing e reporting para a matriz.
+- BPO Financeiro: contas a pagar e receber, fluxo de caixa, relatórios gerenciais e conciliação bancária, com dashboards mensais (fluxo de caixa, DRE e indicadores).
+
+## Sobre
+- A Marina Contábil reúne contadores, advogados e especialistas tributários no mesmo ambiente, com consultoria integrada e humanizada.
+- Liderança: Marina Canedo (CEO) e Mônica Silveira (Diretoria Técnica).
 
 ## Redes
 - Instagram: https://instagram.com/marinacontabil

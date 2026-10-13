@@ -6,7 +6,35 @@ export const dynamic = "force-dynamic";
 const esc = (s: string) => s.replace(/[&<>"']/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" })[c]!);
 const clean = (v: unknown, max: number) => (typeof v === "string" ? v.trim().slice(0, max) : "");
 
+// Limite simples por IP (em memória, por instância): 5 envios / 10 min. Complementa o honeypot.
+const hits = new Map<string, number[]>();
+function limited(ip: string) {
+  const now = Date.now();
+  const list = (hits.get(ip) ?? []).filter((t) => now - t < 10 * 60 * 1000);
+  list.push(now);
+  hits.set(ip, list);
+  if (hits.size > 5000) hits.clear();
+  return list.length > 5;
+}
+
+const ALLOWED_HOSTS = new Set(["marinacontabil.com", "www.marinacontabil.com", "localhost"]);
+
 export async function POST(req: Request) {
+  // Só aceita chamadas vindas do próprio site (ou de previews *.vercel.app)
+  const origin = req.headers.get("origin");
+  if (origin) {
+    let host = "";
+    try { host = new URL(origin).hostname; } catch {}
+    if (!ALLOWED_HOSTS.has(host) && !host.endsWith(".vercel.app")) {
+      return NextResponse.json({ ok: false, error: "forbidden" }, { status: 403 });
+    }
+  }
+  const ip = (req.headers.get("x-forwarded-for") ?? "").split(",")[0].trim() || "unknown";
+  if (limited(ip)) return NextResponse.json({ ok: false, error: "rate_limited" }, { status: 429 });
+  if (Number(req.headers.get("content-length") ?? 0) > 10_000) {
+    return NextResponse.json({ ok: false, error: "too_large" }, { status: 413 });
+  }
+
   let body: Record<string, unknown>;
   try {
     body = await req.json();

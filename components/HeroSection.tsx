@@ -84,7 +84,7 @@ export default function HeroSection() {
 
       <div className="absolute bottom-28 left-1/2 -translate-x-1/2 z-20 flex gap-2">
         {slides.map((_, i) => (
-          <button key={i} onClick={() => setCurrent(i)} className={`h-1.5 rounded-full transition-all ${i === current ? "w-8 bg-accent" : "w-1.5 bg-primary-foreground/40"}`} aria-label={`Slide ${i + 1}`} />
+          <button key={i} onClick={() => setCurrent(i)} className={`relative h-1.5 rounded-full transition-all before:absolute before:-inset-2.5 before:content-[''] ${i === current ? "w-8 bg-accent" : "w-1.5 bg-primary-foreground/40"}`} aria-label={`Slide ${i + 1}`} />
         ))}
       </div>
 

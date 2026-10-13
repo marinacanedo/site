@@ -26,6 +26,12 @@ const jsonLd = {
       openingHoursSpecification: [{ "@type": "OpeningHoursSpecification", dayOfWeek: ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"], opens: "09:00", closes: "18:00" }],
       areaServed: { "@type": "City", name: "Belo Horizonte" },
       sameAs: Object.values(SITE.social),
+      contactPoint: [{ "@type": "ContactPoint", contactType: "customer service", telephone: SITE.phoneTel, email: SITE.email, areaServed: "BR", availableLanguage: ["pt-BR", "en"] }],
+      hasOfferCatalog: {
+        "@type": "OfferCatalog",
+        name: "Serviços contábeis",
+        itemListElement: ["Contabilidade Geral", "Abertura e Regularização de empresas", "Obrigações Fiscais", "Departamento Pessoal", "MEI e Simples Nacional", "Consultoria Tributária", "Contabilidade Internacional", "BPO Financeiro"].map((name) => ({ "@type": "Offer", itemOffered: { "@type": "Service", name, provider: { "@id": `${SITE.url}/#organization` } } })),
+      },
       knowsAbout: ["Contabilidade geral", "Planejamento tributário", "BPO financeiro", "Departamento pessoal", "Contabilidade internacional"],
     },
     { "@type": "WebSite", "@id": `${SITE.url}/#website`, url: `${SITE.url}/`, name: SITE.name, inLanguage: "pt-BR", publisher: { "@id": `${SITE.url}/#organization` } },
@@ -36,8 +42,9 @@ export default function Home() {
   return (
     <>
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }} />
+      <a href="#conteudo" className="sr-only focus:not-sr-only focus:fixed focus:top-2 focus:left-2 focus:z-[60] focus:rounded-full focus:bg-accent focus:px-4 focus:py-2 focus:text-accent-foreground">Pular para o conteúdo</a>
       <Header />
-      <main>
+      <main id="conteudo">
         <h1 className="sr-only">Marina Contábil — Contabilidade e BPO Financeiro em Belo Horizonte</h1>
         <HeroSection />
         <AboutSection />

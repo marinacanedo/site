@@ -40,6 +40,11 @@ Sem as três primeiras, o formulário responde erro e o site mostra o telefone (
 6. **Domínio:** só depois do teste, apontar `marinacontabil.com` para a Vercel e despublicar o Lovable alguns dias depois.
 7. Opcional: Google Search Console (enviar `/sitemap.xml`) e Analytics.
 
+## Segurança (resumo)
+- Headers: CSP, HSTS, X-Frame-Options, nosniff, Referrer-Policy, Permissions-Policy, COOP (`next.config.mjs`).
+- Formulário: honeypot, validação no servidor, limite de 5 envios/10 min por IP, aceita só origem `marinacontabil.com`/`www`/`*.vercel.app`; segredos só no servidor.
+- Supabase: RLS ligado em `contact_leads`, sem policies públicas. `npm audit` sem vulnerabilidades.
+
 ## Estrutura
 - `app/page.tsx` — página única (+ JSON-LD `AccountingService`/`WebSite`); `app/layout.tsx` — metadados, OG, fontes; `app/robots.ts`, `app/sitemap.ts`, `app/not-found.tsx`; `app/api/contact/route.ts` — envio do formulário.
 - `components/` — seções (Hero, Escritório, Serviços, BPO, Equipe, Contato, Rodapé). Dados de contato/redes em `components/site.ts`.
@@ -47,7 +52,7 @@ Sem as três primeiras, o formulário responde erro e o site mostra o telefone (
 - `src-photos/` + `npm run images` — originais e script que regenera `public/img` (`sharp`). Para trocar uma foto: substituir em `src-photos/` (mesmo nome) e rodar `npm run images`.
 
 ## Domínio canônico
-Definido como `https://marinacontabil.com`. Se o principal for `.com.br`, alterar em `components/site.ts`, `app/layout.tsx`, `app/sitemap.ts`, `app/robots.ts` e `public/llms.txt`.
+Definido como `https://marinacontabil.com` (confirmado). Se um dia mudar, alterar em `components/site.ts`, `app/layout.tsx`, `app/sitemap.ts`, `app/robots.ts` e `public/llms.txt`.
 
 ## Pendências de conteúdo (decisão do cliente)
 - Depoimentos reais (seção arquivada), cargos finais da equipe, FAQ, Google Analytics/Search Console.

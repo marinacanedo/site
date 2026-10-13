@@ -19,7 +19,7 @@ const team = [
 export default function TeamSection() {
   const { ref, isVisible } = useScrollAnimation();
   return (
-    <section id="equipe" className="relative py-24 md:py-32 bg-primary overflow-hidden">
+    <section id="equipe" className="scroll-mt-16 md:scroll-mt-20 relative py-24 md:py-32 bg-primary overflow-hidden">
       <div className="absolute inset-0 bg-dots opacity-60" />
       <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[40rem] h-[20rem] bg-accent/10 blur-3xl rounded-full" />
       <div ref={ref} className={`container relative px-6 md:px-12 transition-all duration-1000 ${isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-10"}`}>

@@ -33,11 +33,11 @@ export default function ContactSection() {
   };
 
   return (
-    <section id="contato" className="relative py-24 md:py-32 bg-background overflow-hidden">
+    <section id="contato" className="scroll-mt-16 md:scroll-mt-20 relative py-24 md:py-32 bg-background overflow-hidden">
       <div className="absolute -top-32 left-0 w-96 h-96 rounded-full bg-accent/5 blur-3xl" />
       <div ref={ref} className={`container relative px-6 md:px-12 transition-all duration-1000 ${isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-10"}`}>
         <div className="max-w-2xl mx-auto text-center mb-12">
-          <h2 className="font-serif text-4xl md:text-5xl leading-tight">Fale com a <span className="text-gradient-gold italic">gente</span></h2>
+          <h2 className="font-serif text-4xl md:text-5xl leading-tight">Fale com a <span className="text-gradient-gold-dark italic">gente</span></h2>
           <p className="mt-4 text-muted-foreground">Envie sua mensagem e nossa equipe retorna o contato o quanto antes.</p>
         </div>
         <form onSubmit={onSubmit} className="max-w-2xl mx-auto grid gap-6 rounded-[2rem] border border-border/60 bg-card/60 backdrop-blur-sm p-6 md:p-10 shadow-lg">

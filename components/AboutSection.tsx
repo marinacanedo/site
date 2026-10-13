@@ -24,20 +24,23 @@ export default function AboutSection() {
   const { ref, isVisible } = useScrollAnimation();
   const years = useCounter(45, isVisible);
   return (
-    <section id="sobre" className="relative py-24 md:py-32 bg-background overflow-hidden">
+    <section id="sobre" className="scroll-mt-16 md:scroll-mt-20 relative py-24 md:py-32 bg-background overflow-hidden">
       <div className="absolute top-20 -left-32 w-96 h-96 rounded-full bg-accent/5 blur-3xl" />
       <div className="absolute bottom-20 -right-32 w-96 h-96 rounded-full bg-primary/5 blur-3xl" />
       <div ref={ref} className={`container relative px-6 md:px-12 transition-all duration-1000 ${isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-10"}`}>
         <div className="mb-12 md:mb-16">
-          <span className="inline-block text-accent text-xs tracking-[0.3em] uppercase font-medium mb-4">Nossa essência</span>
+          <span className="inline-block text-accent-dark text-xs tracking-[0.3em] uppercase font-medium mb-4">Nossa essência</span>
           <h2 className="font-serif text-3xl md:text-4xl lg:text-5xl font-bold text-foreground leading-[1.1]">
-            Nossa <span className="text-gradient-gold italic">história</span> é feita de confiança
+            Nossa <span className="text-gradient-gold-dark italic">história</span> é feita de confiança
           </h2>
         </div>
         <div className="grid md:grid-cols-2 gap-12 md:gap-20 items-start">
           <div className="flex flex-col justify-center">
             <div className="inline-flex items-baseline gap-3 mb-8 self-start">
-              <span className="font-serif text-5xl md:text-6xl font-bold text-gradient-gold leading-none">+{years}</span>
+              <span className="font-serif text-5xl md:text-6xl font-bold text-gradient-gold-dark leading-none">
+                <span className="sr-only">+45</span>
+                <span aria-hidden="true">+{isVisible ? years : 45}</span>
+              </span>
               <span className="text-foreground/70 text-sm tracking-wide">anos cuidando de quem confia</span>
             </div>
             <div className="space-y-4 text-muted-foreground text-base md:text-lg leading-relaxed text-justify">

@@ -1,5 +1,21 @@
 /** @type {import('next').NextConfig} */
+const csp = [
+  "default-src 'self'",
+  "script-src 'self' 'unsafe-inline'", // Next injeta scripts inline; JSON-LD também
+  "style-src 'self' 'unsafe-inline'",
+  "img-src 'self' data:",
+  "font-src 'self' data:",
+  "connect-src 'self'",
+  "object-src 'none'",
+  "base-uri 'self'",
+  "form-action 'self'",
+  "frame-ancestors 'self'",
+  "upgrade-insecure-requests",
+].join("; ");
+
 const securityHeaders = [
+  { key: "Content-Security-Policy", value: csp },
+  { key: "Cross-Origin-Opener-Policy", value: "same-origin" },
   { key: "X-Content-Type-Options", value: "nosniff" },
   { key: "X-Frame-Options", value: "SAMEORIGIN" },
   { key: "Referrer-Policy", value: "strict-origin-when-cross-origin" },
