@@ -68,6 +68,9 @@ export async function POST(req: Request) {
     body: JSON.stringify({
       from,
       to: to.split(",").map((s) => s.trim()).filter(Boolean),
+      ...(process.env.CONTACT_CC_EMAIL
+        ? { cc: process.env.CONTACT_CC_EMAIL.split(",").map((s) => s.trim()).filter(Boolean) }
+        : {}),
       reply_to: email,
       subject: `Novo contato pelo site Marina Contábil — ${nome}`,
       html: `<h2>Novo contato pelo site</h2>

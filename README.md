@@ -20,6 +20,7 @@ npm run typecheck && npm run build
 |---|---|---|
 | `RESEND_API_KEY` | sim | chave de API do Resend (permissão "Sending access") |
 | `CONTACT_TO_EMAIL` | sim | quem recebe os contatos (vários: separados por vírgula). Hoje: `adriana@marinacontabil.com.br` |
+| `CONTACT_CC_EMAIL` | não | cópia (cc) dos contatos. Hoje: `marina@marinacontabil.com` |
 | `CONTACT_FROM_EMAIL` | sim | remetente, ex.: `Site Marina Contábil <site@marinacontabil.com>` — o domínio precisa estar **verificado no Resend** |
 | `SUPABASE_URL` | não | URL do projeto Supabase |
 | `SUPABASE_SERVICE_ROLE_KEY` | não | chave *service role* (só servidor; nunca com prefixo `NEXT_PUBLIC_`) |
@@ -35,7 +36,7 @@ Sem as três primeiras, o formulário responde erro e o site mostra o telefone (
 1. **DNS de `mail.marinacontabil.com`** (Resend → Domains → `mail.marinacontabil.com` → Manual setup). Criar 3 registros, copiando os valores do painel do Resend: `TXT resend._domainkey.mail` (DKIM), `CNAME rsend.mail` e `CNAME send.mail`. Em Cloudflare, deixar como *DNS only*. Depois clicar em *Verify DNS Records*. Por ser um subdomínio, não interfere no e-mail atual (Google Workspace).
 2. **API key do Resend:** Resend → API keys → *Create API key* → permissão **Sending access**, restrita ao domínio. Copiar direto para a Vercel (a chave só aparece uma vez).
 3. **Chave do Supabase:** Project Settings → API (ou *API Keys*) → **service_role**/secret key → Vercel. Nunca em arquivo do repositório nem com prefixo `NEXT_PUBLIC_`.
-4. **Vercel:** importar `marinacanedo/site`; variáveis: `RESEND_API_KEY`, `CONTACT_TO_EMAIL`, `CONTACT_FROM_EMAIL`, `SUPABASE_URL`, `SUPABASE_SERVICE_ROLE_KEY` (valores base em `.env.example`).
+4. **Vercel:** importar `marinacanedo/site`; variáveis: `RESEND_API_KEY`, `CONTACT_TO_EMAIL`, `CONTACT_CC_EMAIL`, `CONTACT_FROM_EMAIL`, `SUPABASE_URL`, `SUPABASE_SERVICE_ROLE_KEY` (valores base em `.env.example`).
 5. **Teste:** enviar o formulário em produção; conferir o e-mail recebido e a linha em Supabase → Table Editor → `contact_leads`.
 6. **Domínio:** só depois do teste, apontar `marinacontabil.com` para a Vercel e despublicar o Lovable alguns dias depois.
 7. Opcional: Google Search Console (enviar `/sitemap.xml`) e Analytics.
