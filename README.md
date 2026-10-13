@@ -26,14 +26,19 @@ npm run typecheck && npm run build
 
 Sem as três primeiras, o formulário responde erro e o site mostra o telefone (31) 9545-1993 como alternativa.
 
-## Resend (e-mail do formulário)
-1. Criar conta → *Domains* → adicionar o domínio de envio e publicar no DNS os registros SPF/DKIM que o Resend mostrar (se o domínio já tem SPF, **mesclar** em um único registro).
-2. Criar a API key e cadastrar na Vercel.
+## Estado da configuração (13/10/2026)
+- **GitHub:** repositório `marinacanedo/site` (branch `main`).
+- **Supabase:** projeto "marinacanedo's Project" (`nhrkobdodepjufynnadi`, região São Paulo). Tabela `contact_leads` **já criada** (RLS ligado, sem policies: só o servidor acessa).
+- **Resend:** domínio de envio `mail.marinacontabil.com` (região São Paulo) **adicionado, aguardando DNS**. Só envio; recebimento desligado. O site apenas envia o aviso do formulário para a equipe — não há disparo de e-mails de marketing.
 
-## Supabase (registro dos contatos — opcional)
-1. Criar projeto; no SQL Editor rodar `supabase/migrations/20261013000000_contact_leads.sql` (ou `supabase db push`).
-2. A tabela `contact_leads` tem RLS ligado e nenhuma policy: só o servidor (service role) grava/lê. Consultar pelo painel do Supabase.
-3. Cadastrar `SUPABASE_URL` e `SUPABASE_SERVICE_ROLE_KEY` na Vercel.
+## O que falta para entrar no ar (checklist)
+1. **DNS de `mail.marinacontabil.com`** (Resend → Domains → `mail.marinacontabil.com` → Manual setup). Criar 3 registros, copiando os valores do painel do Resend: `TXT resend._domainkey.mail` (DKIM), `CNAME rsend.mail` e `CNAME send.mail`. Em Cloudflare, deixar como *DNS only*. Depois clicar em *Verify DNS Records*. Por ser um subdomínio, não interfere no e-mail atual (Google Workspace).
+2. **API key do Resend:** Resend → API keys → *Create API key* → permissão **Sending access**, restrita ao domínio. Copiar direto para a Vercel (a chave só aparece uma vez).
+3. **Chave do Supabase:** Project Settings → API (ou *API Keys*) → **service_role**/secret key → Vercel. Nunca em arquivo do repositório nem com prefixo `NEXT_PUBLIC_`.
+4. **Vercel:** importar `marinacanedo/site`; variáveis: `RESEND_API_KEY`, `CONTACT_TO_EMAIL`, `CONTACT_FROM_EMAIL`, `SUPABASE_URL`, `SUPABASE_SERVICE_ROLE_KEY` (valores base em `.env.example`).
+5. **Teste:** enviar o formulário em produção; conferir o e-mail recebido e a linha em Supabase → Table Editor → `contact_leads`.
+6. **Domínio:** só depois do teste, apontar `marinacontabil.com` para a Vercel e despublicar o Lovable alguns dias depois.
+7. Opcional: Google Search Console (enviar `/sitemap.xml`) e Analytics.
 
 ## Estrutura
 - `app/page.tsx` — página única (+ JSON-LD `AccountingService`/`WebSite`); `app/layout.tsx` — metadados, OG, fontes; `app/robots.ts`, `app/sitemap.ts`, `app/not-found.tsx`; `app/api/contact/route.ts` — envio do formulário.
