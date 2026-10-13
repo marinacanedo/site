@@ -1,0 +1,46 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --font-inter: "Inter Variable"; --font-playfair: "Playfair Display Variable";
+    --background: 0 0% 100%; --foreground: 195 70% 15%;
+    --card: 0 0% 100%; --card-foreground: 195 70% 15%;
+    --primary: 195 70% 17%; --primary-foreground: 40 30% 95%;
+    --secondary: 195 20% 92%; --secondary-foreground: 195 70% 17%;
+    --muted: 195 15% 93%; --muted-foreground: 195 10% 45%;
+    --accent: 28 50% 64%; --accent-foreground: 0 0% 100%;
+    --burgundy: 310 30% 20%; --burgundy-foreground: 0 0% 100%;
+    --border: 195 20% 88%; --input: 195 20% 88%; --ring: 28 50% 64%;
+    --radius: 1rem;
+    --gradient-gold: linear-gradient(135deg, hsl(28 50% 64%) 0%, hsl(38 80% 75%) 50%, hsl(28 50% 64%) 100%);
+    --gradient-hero: radial-gradient(ellipse at top left, hsl(195 70% 25% / 0.9), transparent 60%), radial-gradient(ellipse at bottom right, hsl(310 30% 25% / 0.7), transparent 60%);
+    --glass-bg: hsl(40 30% 95% / 0.06);
+    --glass-border: hsl(28 50% 64% / 0.25);
+    --glow-gold: 0 0 40px hsl(28 50% 64% / 0.35);
+  }
+}
+@layer base {
+  * { @apply border-border; }
+  body { @apply bg-background text-foreground font-sans; }
+  h1, h2, h3, h4, h5, h6 { font-family: var(--font-playfair), Georgia, serif; }
+  html { scroll-behavior: smooth; }
+  :focus-visible { outline: 2px solid hsl(var(--accent)); outline-offset: 2px; }
+}
+@layer utilities {
+  .text-gradient-gold { background: var(--gradient-gold); background-size: 200% 200%; -webkit-background-clip: text; background-clip: text; color: transparent; animation: gradient-shift 6s ease-in-out infinite; }
+  .glass { background: var(--glass-bg); backdrop-filter: blur(14px); -webkit-backdrop-filter: blur(14px); border: 1px solid var(--glass-border); }
+  .glow-gold { box-shadow: var(--glow-gold); }
+  .conic-border { background: conic-gradient(from 0deg, hsl(28 50% 64%), hsl(38 80% 75%), hsl(28 50% 64%), hsl(195 70% 30%), hsl(28 50% 64%)); animation: spin-slow 8s linear infinite; animation-play-state: paused; }
+  .group:hover .conic-border { animation-play-state: running; }
+  .bg-dots { background-image: radial-gradient(hsl(28 50% 64% / 0.18) 1px, transparent 1px); background-size: 22px 22px; }
+  .bg-grid { background-image: linear-gradient(hsl(28 50% 64% / 0.06) 1px, transparent 1px), linear-gradient(90deg, hsl(28 50% 64% / 0.06) 1px, transparent 1px); background-size: 60px 60px; }
+  .bg-hero-glow { background: var(--gradient-hero); }
+}
+@keyframes gradient-shift { 0%,100% { background-position: 0% 50%; } 50% { background-position: 100% 50%; } }
+@keyframes spin-slow { to { transform: rotate(360deg); } }
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { animation-duration: 0.001ms !important; animation-iteration-count: 1 !important; animation-delay: 0ms !important; transition-duration: 0.001ms !important; scroll-behavior: auto !important; }
+  .animate-ken-burns, .animate-float, .animate-shimmer, .animate-scroll-indicator, .conic-border, .text-gradient-gold { animation: none !important; }
+}
