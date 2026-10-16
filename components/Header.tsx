@@ -51,8 +51,8 @@ export default function Header() {
     <header className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${scrolled ? "bg-primary shadow-lg" : "bg-primary/90 backdrop-blur-sm"}`}>
       <div className="container flex items-center justify-between h-16 md:h-20 px-6 md:px-12">
         <a href="/" className="flex items-center" aria-label="Marina Contábil — início">
-          <img src="/img/logo-full-white.webp" alt="Marina Contábil" className="hidden md:block h-10 w-auto" width={180} height={40} />
-          <img src="/img/logo-mark-white.webp" alt="Marina Contábil" className="md:hidden h-9 w-auto" width={36} height={36} />
+          <img src="/img/logo-full-white.webp" alt="Marina Contábil" className="hidden md:block h-10 w-auto" width={118} height={40} />
+          <img src="/img/logo-mark-white.webp" alt="Marina Contábil" className="md:hidden h-9 w-auto" width={47} height={36} />
         </a>
 
         <nav className="hidden md:flex items-center gap-8" aria-label="Navegação principal">

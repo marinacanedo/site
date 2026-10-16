@@ -34,6 +34,7 @@ export default function HeroSection() {
   const [current, setCurrent] = useState(0);
   const [isPaused, setIsPaused] = useState(false);
   const [isHovering, setIsHovering] = useState(false);
+  const [animateText, setAnimateText] = useState(false); // 1º slide aparece sem animação (melhora o LCP)
   const next = useCallback(() => setCurrent((c) => (c + 1) % slides.length), []);
   const prev = useCallback(() => setCurrent((c) => (c - 1 + slides.length) % slides.length), []);
 
@@ -42,6 +43,8 @@ export default function HeroSection() {
     const t = setInterval(next, 7000);
     return () => clearInterval(t);
   }, [next, isPaused, isHovering]);
+
+  useEffect(() => { if (current !== 0) setAnimateText(true); }, [current]);
 
   const nextIndex = (current + 1) % slides.length;
   const socials = [
@@ -82,9 +85,11 @@ export default function HeroSection() {
       <button onClick={prev} className="absolute left-4 md:left-8 top-1/2 -translate-y-1/2 z-20 w-11 h-11 rounded-full glass text-accent hover:glow-gold transition-all" aria-label="Anterior"><ChevronLeft size={22} className="mx-auto" /></button>
       <button onClick={next} className="absolute right-4 md:right-8 top-1/2 -translate-y-1/2 z-20 w-11 h-11 rounded-full glass text-accent hover:glow-gold transition-all" aria-label="Próximo"><ChevronRight size={22} className="mx-auto" /></button>
 
-      <div className="absolute bottom-28 left-1/2 -translate-x-1/2 z-20 flex gap-2">
+      <div className="absolute bottom-28 left-1/2 -translate-x-1/2 z-20 flex">
         {slides.map((_, i) => (
-          <button key={i} onClick={() => setCurrent(i)} className={`relative h-1.5 rounded-full transition-all before:absolute before:-inset-2.5 before:content-[''] ${i === current ? "w-8 bg-accent" : "w-1.5 bg-primary-foreground/40"}`} aria-label={`Slide ${i + 1}`} />
+          <button key={i} onClick={() => setCurrent(i)} className="h-6 px-[9px] flex items-center justify-center" aria-label={`Slide ${i + 1}`} aria-current={i === current}>
+            <span className={`block h-1.5 rounded-full transition-all ${i === current ? "w-8 bg-accent" : "w-1.5 bg-primary-foreground/40"}`} />
+          </button>
         ))}
       </div>
 
@@ -95,7 +100,7 @@ export default function HeroSection() {
       </button>
 
       <div className="container relative z-10 px-6 md:px-12 py-32 md:py-0">
-        <div key={current} className="max-w-3xl animate-fade-in-up">
+        <div key={current} className={`max-w-3xl ${animateText ? "animate-fade-in-up" : ""}`}>
           <span className="inline-block glass rounded-full px-4 py-1.5 mb-6 text-accent text-xs tracking-[0.25em] uppercase font-medium">{slides[current].eyebrow}</span>
           <p className="font-serif text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-bold text-primary-foreground leading-[1.05] mb-6">{slides[current].title}</p>
           <p className="text-primary-foreground/75 text-base md:text-lg lg:text-xl max-w-xl mb-10 leading-relaxed font-light">{slides[current].description}</p>

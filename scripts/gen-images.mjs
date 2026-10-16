@@ -26,10 +26,10 @@ for (const [dir, names] of Object.entries(expected)) {
     }
   }
 }
-// logo-mark: PNG com alpha (usado como máscara CSS)
+// logo-mark: WebP com alpha (usado como máscara CSS)
 const mark = fs.readdirSync(SRC).find((f) => path.parse(f).name === "logo-mark");
-if (mark) await sharp(path.join(SRC, mark)).resize({ width: 800, withoutEnlargement: true }).png({ compressionLevel: 9 }).toFile(path.join(OUT, "logo-mark.png"));
-else { missing.push("logo-mark"); await sharp({ create: { width: 800, height: 800, channels: 4, background: "#ffffff" } }).png().toFile(path.join(OUT, "logo-mark.png")); }
+if (mark) await sharp(path.join(SRC, mark)).resize({ width: 800, withoutEnlargement: true }).webp({ quality: 85, alphaQuality: 100 }).toFile(path.join(OUT, "logo-mark.webp"));
+else { missing.push("logo-mark"); await sharp({ create: { width: 800, height: 800, channels: 4, background: "#ffffff" } }).webp().toFile(path.join(OUT, "logo-mark.webp")); }
 
 fs.writeFileSync("MISSING.md", missing.length ? `# Imagens ainda não importadas (placeholders)\n\n${missing.map((m) => `- ${m}`).join("\n")}\n` : "# Todas as imagens importadas\n");
 console.log(missing.length ? `Faltando (${missing.length}): ${missing.join(", ")}` : "OK, todas as imagens");
