@@ -61,7 +61,7 @@ export async function POST(req: Request) {
     return NextResponse.json({ ok: false, error: "not_configured" }, { status: 500 });
   }
 
-  // 1) E-mail via Resend (REST, sem SDK)
+  // E-mail via Resend (REST, sem SDK). O e-mail é o registro do contato: não há banco de dados.
   const res = await fetch("https://api.resend.com/emails", {
     method: "POST",
     headers: { Authorization: `Bearer ${resendKey}`, "Content-Type": "application/json" },
@@ -81,21 +81,6 @@ export async function POST(req: Request) {
       text: `Nome: ${nome}\nE-mail: ${email}\nTelefone: ${telefone || "-"}\n\n${mensagem}`,
     }),
   });
-
-  // 2) Registro do lead no Supabase (opcional; não bloqueia o envio)
-  const sbUrl = process.env.SUPABASE_URL;
-  const sbKey = process.env.SUPABASE_SERVICE_ROLE_KEY;
-  if (sbUrl && sbKey) {
-    try {
-      await fetch(`${sbUrl}/rest/v1/contact_leads`, {
-        method: "POST",
-        headers: { apikey: sbKey, Authorization: `Bearer ${sbKey}`, "Content-Type": "application/json", Prefer: "return=minimal" },
-        body: JSON.stringify({ nome, email, telefone: telefone || null, mensagem, email_enviado: res.ok }),
-      });
-    } catch (e) {
-      console.error("contact: falha ao gravar no Supabase", e);
-    }
-  }
 
   if (!res.ok) {
     console.error("contact: Resend respondeu", res.status, await res.text());
